@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getSession, login } from '../lib/authService';
 import toast from 'react-hot-toast';
 import { NavLink, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const LoginForm = ({setIsRegistering}) => {
   const navigate = useNavigate()
@@ -16,17 +17,15 @@ const LoginForm = ({setIsRegistering}) => {
   e.preventDefault();
   const {email , password} = loginData
   
-      const {data, error} = await login(email , password)
+     const response = await axios.post("http://localhost:3000/auth/api/login" , loginData)
+
+    
+if(!response.data.success){
+  return toast.error(response.data.message)
+}
   
-  
-  if(error){
-      console.log("Error found" , error)
-      toast.error("Login failed")
-      return
-  }
-  
-  toast.success("Login Successfull")
-  console.log(data)
+  toast.success(response.data.message)
+  console.log(response.data)
   navigate("/dashboard")
   setLoginData({
       email : "",

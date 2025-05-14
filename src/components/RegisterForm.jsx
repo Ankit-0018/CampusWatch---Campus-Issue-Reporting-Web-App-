@@ -37,7 +37,16 @@ const RegisterForm = ({setIsRegistering}) => {
 
    try {
 
-   await axios.post("http://localhost:3000/auth/register", registerData)
+   const response = await axios.post("http://localhost:3000/auth/api/register", registerData)
+ if(!response.data.success){
+     
+return toast.error( response.data.message)
+
+     }
+  
+    toast.success("Register successfull")
+    setIsRegistering(false)
+   
     
    } catch (error) {
     console.log("Error sending Data" , error)
@@ -46,7 +55,9 @@ const RegisterForm = ({setIsRegistering}) => {
   return (
    <div className="form p-4">
         <form onSubmit={handleSubmit}>
-          <h1 className='text-center my-3'>Register with your Official Email Id</h1>
+          <h1 className='text-center my-3 text-xl font-2xl'>Register with your Official Email Id</h1>
+
+          <span>Join Campus Watch - <span>An Issue Reporting Platform</span></span>
 
           <input type="text" placeholder='Enter Your Full Name' value={registerData.fullname} onChange={e => setRegisterData({ ...registerData, fullname: e.target.value })} />
           <input type="email" placeholder='Enter Your Official Email' value={registerData.email} onChange={e => setRegisterData({ ...registerData, email: e.target.value })} />
