@@ -1,21 +1,31 @@
 require("dotenv").config();
-const myDatabase = require("mysql2")
+const mysql = require("mysql2/promise");
 
-const connection = myDatabase.createConnection({
+let db;
+
+(async () => {
+  try {
+    db = await mysql.createConnection({
       host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME
-})
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD, 
+      database: process.env.DB_NAME,
+    });
 
-connection.connect((err) => {
-if(err){
-    console.log("Database Connection failed!" , err);
-    return
-}
-console.log("Database Connected Successfully")
-});
+    console.log("✅ Database connected successfully");
+  } catch (err) {
+    console.error("❌ Database connection failed:", err);
+    process.exit(1); 
+  }
+})();
 
-
-
-module.exports = connection;
+module.exports = {
+  getDB: async () => {
+    
+    if (!db) {
+      console.error("❌ Database not initialized yet!");
+      return null;
+    }
+    return db;
+  },
+};
