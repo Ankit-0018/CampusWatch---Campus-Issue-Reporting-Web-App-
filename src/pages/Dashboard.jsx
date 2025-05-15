@@ -21,15 +21,20 @@ const Dashboard = () => {
      const [inProgressCount , setInProgressCount] = useState(0)
 
    useEffect(() => {
-    if (!isLoading && !user || error) {
-      navigate("/");
-    }
-  }, [user, isLoading, navigate]);
-
-  if(isLoading){
-    return <div className="w-full h-screen flex justify-center items-center">Loading...</div>
+  if (!isLoading && (!user || error)) {
+    console.log(user)
+    navigate("/");
   }
-    
+}, [user, isLoading, error, navigate]);
+
+if (isLoading) {
+  return (
+    <div className="w-full h-screen flex justify-center items-center">
+      Loading...
+    </div>
+  );
+}
+ 
   return (
     <div className='w-full h-screen'>
       <Sidebar/>

@@ -5,7 +5,7 @@ const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [error , setError] = useState(null)
+  const [error , setError] = useState("")
   const [isLoading , setIsLoading] = useState(true)
   
 
@@ -15,7 +15,6 @@ export const UserProvider = ({ children }) => {
         
         console.log(res.data.user.user)
         setUser(res.data.user)
-      setError(null)
         setIsLoading(false)
       })
       .catch((err) => {
