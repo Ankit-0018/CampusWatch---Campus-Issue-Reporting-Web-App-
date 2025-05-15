@@ -35,25 +35,12 @@ if(!isMatched){
 
 }
 
-const token = generateJwt(email)
-  return res.status(200).json({
-      message: "Login successful",
-      success: true,
-      token,
-      user: {
-        id: user.id,
-        fullname: user.fullname,
-        email: user.email,
-        role: user.role,
-        gender : user.gender,
-        department : user.department,
-        phone : user.phone,
-        created_at : user.created_at,
-        updated_at : user.updated_at
-      },
-    });
-
-
-}
+const token = generateJwt(user)
+  return res.cookie("token", token, {
+  httpOnly: true,
+  secure: false, 
+  sameSite: "lax", 
+  maxAge: 24 * 60 * 60 * 1000, 
+})}
 
 module.exports = authLogin;
