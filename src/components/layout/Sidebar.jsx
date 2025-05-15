@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
-import { logout } from '../../lib/authService'
 import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { CircleUserRound,CircleX, Menu, Search, LayoutDashboard, UserRound , ListChecks , CircleDot } from 'lucide-react'
+import { useUser } from '../../context/UserContext'
 
 const Sidebar = () => {
+  const {logout} = useUser()
 const navigate = useNavigate()
 const [isActive, setIsActive] = useState(false)
 const handleLogout = async () => {
 try {
-   await logout()
+logout()
 
 } catch (error) {
     console.log("Error During Logout" , error)

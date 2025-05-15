@@ -17,7 +17,7 @@ const LoginForm = ({setIsRegistering}) => {
   e.preventDefault();
   const {email , password} = loginData
   
-     const response = await axios.post("http://localhost:3000/auth/api/login" , loginData)
+     const response = await axios.post("http://localhost:3000/auth/api/login" , loginData , {withCredentials : true})
 
     
 if(!response.data.success){

@@ -9,8 +9,7 @@ const App = () => {
 
   const router = createBrowserRouter([
     {path: "/" , element : <FormCard/>},
-   
-    {path: "/Confirm" , element : <ConfirmPage/>},
+    {path: "/confirm" , element : <ConfirmPage/>},
     {path: "/dashboard" , element : <Dashboard/>},
   ])
   return (
