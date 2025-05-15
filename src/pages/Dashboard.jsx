@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { getSession } from '../lib/authService'
+import { useUser } from '../context/UserContext'
 import { useNavigate } from 'react-router-dom'
 import Sidebar from '../components/layout/sidebar'
 import RecentIssue from '../components/RecentIssue'
-import { supabase } from '../lib/supabase'
+
 
 
 const Dashboard = () => {
     const navigate = useNavigate()
+      const {user , isLoading , error} = useUser()
    const [issueData , setIssueData] = useState({
     description : "",
     status : "",
@@ -19,41 +20,15 @@ const Dashboard = () => {
      const [resolvedCount , setResolvedCount] = useState(0)
      const [inProgressCount , setInProgressCount] = useState(0)
 
-     useEffect(() => {
-      const checkSession = async () => {
-        const { data: sessionData, error } = await getSession()
-    
-        if (!sessionData) {
-          navigate("/")
-          console.error(error)
-          return
-        }
-    
-        const { data: issues, error: issueError } = await supabase.from("issues").select("*")
-        if (issueError) {
-          console.error("Issue fetch error:", issueError)
-          return
-        }
-    
-        console.log(issues)
-    
-        let critical = 0
-        let resolved = 0
-        let inProgress = 0
-    
-        issues.forEach((issue) => {
-          if (issue.priority === "critical") critical++
-          if (issue.status === "Resolved") resolved++
-          if (issue.status === "in-Progress") inProgress++
-        })
-    
-        setCriticalCount(critical)
-        setResolvedCount(resolved)
-        setInProgressCount(inProgress)
-      }
-    
-      checkSession()
-    }, [navigate])
+   useEffect(() => {
+    if (!isLoading && !user || error) {
+      navigate("/");
+    }
+  }, [user, isLoading, navigate]);
+
+  if(isLoading){
+    return <div className="w-full h-screen flex justify-center items-center">Loading...</div>
+  }
     
   return (
     <div className='w-full h-screen'>

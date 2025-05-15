@@ -1,28 +1,40 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 
+const UserContext = createContext();
 
+export const UserProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [error , setError] = useState(null)
+  const [isLoading , setIsLoading] = useState(true)
+  
 
-const userContext = createContext();
+  useEffect(() => {
+    axios.get("http://localhost:3000/api/me", { withCredentials: true })
+      .then(res => {
+        
+        console.log(res.data.user.user)
+        setUser(res.data.user)
+      setError(null)
+        setIsLoading(false)
+      })
+      .catch((err) => {
+        setError(err)
+        setUser(null)
+        setIsLoading(false)
+      });
+  }, []);
 
+  const logout = () => {
+    axios.post("http://localhost:3000/api/logout", {}, { withCredentials: true })
+      .then(() => setUser(null));
+  };
 
-export const  userProvider = ({children }) => {
+  return (
+    <UserContext.Provider value={{ user, setUser, logout , error, isLoading }}>
+      {children}
+    </UserContext.Provider>
+  );
+};
 
-    const [user,setUser] = useState(null)
-
-    useEffect(() => {
-        axios.get("http://localhost:3000/api/me").then(res => setUser(res.data.user)).catch(() => setUser(null))
-    })
-
-    const logout = () => {
-axios.post("http://localhost:3000/api/logout").then(() => setUser(null))
-
-    }
-
-return <userContext.Provider value={{user,setUser,logout}}>
-    {children}
-</userContext.Provider>
-
-}
-
-export const useUser = useContext(userContext)
+export const useUser = () => useContext(UserContext);

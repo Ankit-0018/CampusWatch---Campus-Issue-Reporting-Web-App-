@@ -3,14 +3,14 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import { Toaster } from 'react-hot-toast'
 import App from './App.jsx'
-import { userProvider } from './context/userContext.jsx'
+import { UserProvider } from './context/UserContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <userProvider>
+    <UserProvider>
 
     <Toaster position='top-10 right-10'/>
     <App />
-    </userProvider>
+    </UserProvider>
   </StrictMode>,
 )

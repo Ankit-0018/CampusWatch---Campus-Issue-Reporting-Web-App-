@@ -10,7 +10,7 @@ userRoute.route("/me").get(verifyJwt,(req,res) => {
     })
 })
 
-userRoute.route("/logout").get((req,res) => {
+userRoute.route("/logout").post((req,res) => {
   res.clearCookie('token' , {
     httpOnly: true,
     sameSite: "lax",
