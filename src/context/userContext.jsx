@@ -25,7 +25,7 @@ export const UserProvider = ({ children }) => {
   }, []);
 
   const logout = () => {
-    axios.post("http://localhost:3000/api/logout", {}, { withCredentials: true })
+    axios.post("http://localhost:3000/auth/api/logout", {}, { withCredentials: true })
       .then(() => setUser(null));
   };
 
