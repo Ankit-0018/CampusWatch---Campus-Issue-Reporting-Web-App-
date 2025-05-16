@@ -7,7 +7,7 @@ import { useUser } from '../../context/UserContext'
 const Sidebar = () => {
   const {logout} = useUser()
 const navigate = useNavigate()
-const [isActive, setIsActive] = useState(false)
+const [isActive, setIsActive] = useState(true)
 const handleLogout = async () => {
 try {
 logout()
