@@ -16,6 +16,7 @@ export const UserProvider = ({ children }) => {
         console.log(res.data.user.user)
         setUser(res.data.user)
         setIsLoading(false)
+        setError(null)
       })
       .catch((err) => {
         setError(err)
