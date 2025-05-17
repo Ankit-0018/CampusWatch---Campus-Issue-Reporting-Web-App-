@@ -1,10 +1,10 @@
 import React,  { useState } from 'react';
 import toast from 'react-hot-toast';
-import { registerUser } from '../lib/authService';
-import { supabase } from '../lib/supabase';
+import { registerUser } from '../../lib/authService';
+import { supabase } from '../../lib/supabase';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { getSession } from '../lib/authService';
+import { getSession } from '../../lib/authService';
 import axios from 'axios';
 
 const RegisterForm = ({setIsRegistering}) => {

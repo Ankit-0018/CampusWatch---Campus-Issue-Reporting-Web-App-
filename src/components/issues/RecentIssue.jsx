@@ -1,5 +1,5 @@
 import React, { useEffect , useState} from 'react'
-import { useIssues } from '../context/IssueContext'
+import { useIssues } from '../../context/IssueContext'
 
 const RecentIssue = () => {
    const {issueDetails , isLoading : issueLoading} = useIssues()
