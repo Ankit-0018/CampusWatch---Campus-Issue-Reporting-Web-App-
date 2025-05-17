@@ -1,5 +1,5 @@
 import {  createContext, useContext , useEffect, useState} from "react";
-import axios, { Axios } from "axios";
+import axios from "axios";
 
 const IssueContext = createContext();
 

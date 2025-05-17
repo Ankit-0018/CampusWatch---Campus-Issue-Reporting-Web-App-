@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useUser } from '../context/UserContext'
 import { useNavigate } from 'react-router-dom'
 import Sidebar from '../components/layout/sidebar'
-import RecentIssue from '../components/RecentIssue'
+import RecentIssue from '../components/issues/RecentIssue'
 
 
 

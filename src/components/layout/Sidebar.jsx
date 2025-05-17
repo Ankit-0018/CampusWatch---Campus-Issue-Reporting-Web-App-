@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { CircleUserRound,CircleX, Menu, Search, LayoutDashboard, UserRound , ListChecks , CircleDot } from 'lucide-react'
 import { useUser } from '../../context/UserContext'
@@ -41,23 +41,23 @@ const handleClose = () => {
     <div>
       <div className='flex gap-2 p-1 m-2 '>
       <UserRound className='text-[#5664f5]' />
-        <h2>Profile</h2>
+        <h2><NavLink to={"/profile"}>Profile</NavLink></h2>
       </div>
       <div className='flex gap-2 p-1 m-2 '>
       <ListChecks className='text-[#5664f5]' />
-        <h2>My Issues</h2>
+        <h2><NavLink to={"/myissues"}>My Issues</NavLink></h2>
       </div>
       <div className='flex gap-2 p-1 m-2 '>
       <CircleDot className='text-[#5664f5]' />
-        <h2>Issues</h2>
+        <h2><NavLink to={"/issues"}>Issues</NavLink></h2>
       </div>
       <div className='flex gap-2 p-1 m-2 '>
       <Search className='text-[#5664f5]' />
-      <h2>Lost & Found</h2>
+      <h2><NavLink to={"/lostfound"}>Lost & Found</NavLink></h2>
       </div>
       <div className='flex gap-2 p-1 m-2 '>
       <LayoutDashboard className='text-[#5664f5]' />
-        <h2>Dashboard</h2>
+        <h2><NavLink to={"/dashboard"}>Dashboard</NavLink></h2>
       </div>
     </div>
   <button className='px-2 py-3 m-4 bg-red-500 text-white rounded-md' onClick={handleLogout}>

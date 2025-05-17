@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getSession, login } from '../lib/authService';
+import { getSession, login } from '../../lib/authService';
 import toast from 'react-hot-toast';
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
