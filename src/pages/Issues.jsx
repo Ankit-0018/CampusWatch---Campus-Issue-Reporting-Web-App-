@@ -10,6 +10,7 @@ const Issues = () => {
     <>
 <Sidebar/>
     <div className="p-4 w-full min-h-screen">
+      
 <IssueCard/>
    </div>
     </>

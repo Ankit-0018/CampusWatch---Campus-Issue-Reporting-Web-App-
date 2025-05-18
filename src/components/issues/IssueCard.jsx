@@ -3,6 +3,8 @@ import { useIssues } from "../../context/IssueContext";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ThumbsUp,Funnel } from "lucide-react";
+import IssueHeader from "@/components/issues/issueHeader"
+
 
 
 const IssueCard = () => {
@@ -19,34 +21,8 @@ const IssueCard = () => {
     <h1 className="text-4xl font-bold text-[#5664f5]">Campus Watch</h1>
     <h3 className="text-sm text-gray-700" >View and Report Your Issues.</h3>
     </div>
-
-    {/* <div className="flex justify-between m-10">
-        <input type="text" placeholder="Type Issue Name..." className="w-96 p-2 border-2" />
-        <div className="flex justify-between gap-10">
-<Funnel/>
-<div>
-
-            <input type="radio"  name="r1" />
-            <label>All</label>
-</div>
-<div>
-
-            <input type="radio" name="r1" />
-            <label>Critical</label>
-</div>
-<div>
-
-            <input type="radio" name="r1" />
-            <label>Medium</label>
-</div>
-<div>
-
-            <input type="radio" name="r1" />
-            <label>Low</label>
-</div>
-          
-        </div>
-    </div> */}
+<IssueHeader/>
+    
 </header>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
@@ -65,6 +41,9 @@ const IssueCard = () => {
               <Badge variant="outline" className="text-xs capitalize">
                 {"Critical"}
               </Badge>
+            </div>
+            <div>
+                📍Location : {issue.location}
             </div>
           </CardHeader>
 
