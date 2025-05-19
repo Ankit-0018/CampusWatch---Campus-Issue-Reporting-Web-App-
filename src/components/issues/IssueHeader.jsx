@@ -11,7 +11,7 @@ const IssueHeader = () => {
       <input type="text" placeholder="Enter Existing Issue..." />
       <div>
         <span
-          className="flex items-center gap-2 cursor-pointer"
+          className="flex items-center gap-2 cursor-pointer md:hidden"
           onClick={() => setIsActive(true)}
         >
           Filter <Funnel size={16} />
